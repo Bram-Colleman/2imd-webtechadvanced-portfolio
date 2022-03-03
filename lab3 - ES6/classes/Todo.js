@@ -5,10 +5,24 @@ export default class Todo {
   
     createElement() {
       let li = document.createElement("li");
-      li.innerHTML = this.title;
-      li.classList.add("prior-high");
-      // check if the todo item includes a priority like medium: to generate the correct classnames
-      // don't forget to hook up an event listener for the click event
+
+      if(this.title.startsWith("low:")){
+        li.classList.add("prior-low");
+        li.innerHTML = this.title.slice(4);
+    } 
+    else if (this.title.startsWith("high:")){
+        li.classList.add("prior-high");
+        li.innerHTML = this.title.slice(5);
+    } 
+    else if (this.title.startsWith("medium:")){
+        li.classList.add("prior-medium");
+        li.innerHTML = this.title.slice(7);
+    } 
+    else {
+          li.classList.add("prior-medium");
+          li.innerHTML = this.title;
+
+      }
       li.addEventListener("click", this.markDone.bind(li));
       return li;
     }
@@ -22,18 +36,15 @@ export default class Todo {
     }
   
     add() {
-      // this function should append the note to the screen somehow
     let todo = this.createElement();
     document.querySelector("#todo-list").appendChild(todo);
     }
   
     saveToStorage() {
-      // HINT🤩
       // localStorage only supports strings, not arrays
       // if you want to store arrays, look at JSON.parse and JSON.stringify
-      localStorage.setItem(localStorage.length+1, this.title);
-      console.log(localStorage);
-
+      localStorage.setItem(this.title, JSON.stringify(this));
+        console.log(localStorage);
 
     }
   }

@@ -7,21 +7,17 @@ h1 {
   color: white;
 }
 
-#todo-list li.prior-high,
-.prior-medium,
-.prior-low {
-}
 
 .prior-high {
   background-color: #ec0d19;
 }
 
 .prior-medium {
-  background-color: #f33f1c;
+  background-color: #f3921c;
 }
 
 .prior-low {
-  background-color: #f26920;
+  background-color: #f2e020;
 }
 
 .done {
