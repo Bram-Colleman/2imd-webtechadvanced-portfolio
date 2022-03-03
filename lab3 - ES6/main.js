@@ -1,5 +1,4 @@
-import './style.css'
-import Todo from '/classes/Todo.js';
+import './style.css';
+import App from './classes/App.js';
 
-let todo = new Todo('test');
-console.log(todo.title);
+const app = new App();
