@@ -10,12 +10,12 @@ Deze functie checkt of er een bepaald element aanwezig is in een array.
 
 ##### voorbeeld
 
-`let tomato = {name: 'Tomato' },`
-`   cabbage = { name: 'Cabbage'},`
-`    cucumber = {name: 'Cucumber'}`
+`let tomato = {name: 'Tomato' }, \n`
+`   cabbage = { name: 'Cabbage'}, \n`
+`    cucumber = {name: 'Cucumber'} \n`
 
-`let vegetables = [tomato, cucumber];`
+`let vegetables = [tomato, cucumber]; \n`
 
-`console.log(vegetables.includes(cucumber)); // true`
-`console.log(vegetables.includes(cabbage)); // false`
+`console.log(vegetables.includes(cucumber)); // true \n`
+`console.log(vegetables.includes(cabbage)); // false \n`
 
