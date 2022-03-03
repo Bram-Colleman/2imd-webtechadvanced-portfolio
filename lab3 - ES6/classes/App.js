@@ -21,9 +21,17 @@ export default class App {
     }
   
     loadFromStorage() {
-      // HINT🤩
-      // load all items from storage here and add them to the screen
-      // use the Todo class to create the elements
+        let notes = [],
+            keys = Object.keys(localStorage),
+            i = keys.length;
+    
+        while ( i-- ) {
+            notes.push( JSON.parse(localStorage.getItem(keys[i])));
+        }
+      for (let note of notes) {
+        let todo = new Todo(note.title, note.done);
+        todo.add();
+      }
     }
   
     reset() {
