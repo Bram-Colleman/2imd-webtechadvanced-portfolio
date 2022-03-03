@@ -1,6 +1,6 @@
 # Lab 3
 
-- [The future - codepen](https://codepen.io/Boterbram/pen/LYOMKeP)
+- [IMDo App - codepen](https://codepen.io/Boterbram/pen/LYOMKeP)
 
 
 ## ES2016 - feature
@@ -11,7 +11,7 @@ Deze functie checkt of er een bepaald element aanwezig is in een array.
 ##### voorbeeld
 
 `let tomato = {name: 'Tomato' },` 
-`   cabbage = { name: 'Cabbage'},` 
+`    cabbage = { name: 'Cabbage'},` 
 `    cucumber = {name: 'Cucumber'}` 
 
 `let vegetables = [tomato, cucumber];` 
