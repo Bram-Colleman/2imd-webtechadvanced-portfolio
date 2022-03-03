@@ -8,7 +8,8 @@
 
 Deze functie checkt of er een bepaald element aanwezig is in een array.
 
-**voorbeeld**
+##### voorbeeld
+
 `let tomato = {name: 'Tomato' },`
 `   cabbage = { name: 'Cabbage'},`
 `    cucumber = {name: 'Cucumber'}`
