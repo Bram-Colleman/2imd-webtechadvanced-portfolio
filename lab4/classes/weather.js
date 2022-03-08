@@ -3,10 +3,10 @@ export default class Weather {
         this.getLocation();
         this.latitude;
         this.longitude;
+        this.temperature;
     }
 
     getLocation() {
-        const status = document.querySelector('#status');
 
         if(!navigator.geolocation) {
             console.log('Geolocation is not supported by your browser');
@@ -14,7 +14,7 @@ export default class Weather {
             console.log('Locating…');
             navigator.geolocation.getCurrentPosition(
                 this.confirmLocation.bind(this)
-                , this.errorLocation());
+                , this.errorLocation);
             
           }
     }
@@ -22,14 +22,30 @@ export default class Weather {
     confirmLocation(location) {
         this.latitude = location.coords.latitude;
         this.longitude = location.coords.longitude;
-        this.getWeather();
+        this.getTemp();
+    }
+
+
+    getTemp(){
+        let url = `https://api.open-meteo.com/v1/forecast?latitude=${this.latitude}&longitude=${this.longitude}&current_weather=true`;
+        fetch(url)
+            .then(response => {
+                return response.json();
+            })
+            .then(data => {
+                document.querySelector("#weather").innerHTML = data.current_weather.temperature;
+                this.temperature = data.current_weather.temperature;
+            })
+            .catch(err => {
+                console.log(err);
+            });
+    }
+
+    logWeather() {
+        console.log(this.temperature);
     }
 
     errorLocation(e){
         console.log(e);
-    }
-
-    getWeather(){
-        //https://api.open-meteo.com/v1/forecast?latitude=52.52&longitude=13.41&hourly=temperature_2m
     }
 }
