@@ -3,7 +3,8 @@ export default class Weather {
         this.getLocation();
         this.latitude;
         this.longitude;
-        this.temperature;
+        this.temperature = JSON.parse(localStorage.getItem("weather")).temperature;
+        ;
     }
 
     getLocation() {
@@ -11,7 +12,7 @@ export default class Weather {
         if(!navigator.geolocation) {
             console.log('Geolocation is not supported by your browser');
           } else {
-            console.log('Locating…');
+                console.log('Locating…');
             navigator.geolocation.getCurrentPosition(
                 this.confirmLocation.bind(this)
                 , this.errorLocation);
@@ -23,7 +24,10 @@ export default class Weather {
         this.latitude = location.coords.latitude;
         this.longitude = location.coords.longitude;
         this.getTemp();
+
     }
+
+
 
 
     getTemp(){
@@ -33,12 +37,13 @@ export default class Weather {
                 return response.json();
             })
             .then(data => {
-                document.querySelector("#weather").innerHTML = data.current_weather.temperature;
-                this.temperature = data.current_weather.temperature;
+                localStorage.setItem("weather", JSON.stringify(data.current_weather));
+                return this.temperature = data.current_weather.temperature;
             })
             .catch(err => {
                 console.log(err);
             });
+
     }
 
     logWeather() {

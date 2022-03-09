@@ -1,4 +1,4 @@
-import Weather from './classes/weather'
+import Clothing from './classes/clothing';
 import './style.css'
 
-let weater = new Weather();
+let clothing = new Clothing();
