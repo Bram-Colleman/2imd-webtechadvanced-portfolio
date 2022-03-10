@@ -17,15 +17,12 @@ body {
   color: black;
 }
 .freezing {
-  color: white;
+  color: black;
 }
 .sunny {
   color: black;
 }
 
-.sunny .bg {
-  opacity: .65;
-}
 
 .bg {
   width: 250px;
