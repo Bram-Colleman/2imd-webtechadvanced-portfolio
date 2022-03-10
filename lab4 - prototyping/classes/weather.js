@@ -37,8 +37,12 @@ export default class Weather {
                 return response.json();
             })
             .then(data => {
-                localStorage.setItem("weather", JSON.stringify(data.current_weather));
-                return this.temperature = data.current_weather.temperature;
+                if(localStorage.getItem("time")+3600 >= (Date.now()/1000)) {
+                    localStorage.setItem("weather", JSON.stringify(data.current_weather));
+                    return this.temperature = data.current_weather.temperature;
+                } else {
+                    return this.temperature = localStorage.getItem("weather");
+                }
             })
             .catch(err => {
                 console.log(err);

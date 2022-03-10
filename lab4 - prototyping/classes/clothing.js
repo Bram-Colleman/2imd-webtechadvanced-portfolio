@@ -5,20 +5,21 @@ export default class Clothing {
         this.bg;
         this.weather = new Weather();
         this.selectAd();
-
- 
     }
 
     selectAd() {
 
-
-        // let temperature = this.weather.temperature;
-        let temperature = 30;
+        let temperature;
+         temperature = this.weather.temperature;
+        //  temperature = -30;
 
 
         if(parseInt(temperature) < 20 && parseInt(temperature) > 0) {
-//TODO: bekijken om dit 1u in cache op te slaan
-            this.getBg("cloud");
+            if(localStorage.getItem("time")+3600 >= (Date.now()/1000)) {
+                this.getBg("cloud");
+            } else {
+                this.bg = localStorage.getItem("bg");
+            }
 
 
             const delay = ms => new Promise(res => setTimeout(res, ms));
@@ -36,7 +37,12 @@ export default class Clothing {
             } 
 
         else if(parseInt(temperature) <= 0){
-            this.getBg("freeze");
+            if(localStorage.getItem("time")+3600 >= (Date.now()/1000)) {
+                this.getBg("freeze");
+            } else {
+                this.bg = localStorage.getItem("bg");
+            }
+
 
             const delay = ms => new Promise(res => setTimeout(res, ms));
             const waitforAPI = async () => {
@@ -54,7 +60,12 @@ export default class Clothing {
         } 
 
         else if(parseInt(temperature) >= 20){
-            this.getBg("sunny");
+            if(localStorage.getItem("time")+3600 >= (Date.now()/1000)) {
+                this.getBg("sunny");
+            } else {
+                this.bg = localStorage.getItem("bg");
+            }
+
 
             const delay = ms => new Promise(res => setTimeout(res, ms));
             const waitforAPI = async () => {
@@ -72,6 +83,13 @@ export default class Clothing {
         }
     }
 
+
+    /**
+     * 
+     * @param {Weather type based on temperature} type 
+     * 
+     * This function requests a background image via an API call based on weather conditions
+     */
     getBg(type){
         let id;
         let apiKey = "26078620-8f68666ca82257bf891360d2f"
@@ -91,6 +109,8 @@ export default class Clothing {
             })
             .then(data => {
                 this.bg = data.hits[0].largeImageURL;
+                localStorage.setItem("bg", this.bg);
+                localStorage.setItem("time", Date.now()/1000);
             })
             .catch(err => {
                 console.log(err);
