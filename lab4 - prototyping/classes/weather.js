@@ -4,7 +4,6 @@ export default class Weather {
         this.latitude;
         this.longitude;
         this.temperature = JSON.parse(localStorage.getItem("weather")).temperature;
-        ;
     }
 
     getLocation() {
@@ -37,11 +36,12 @@ export default class Weather {
                 return response.json();
             })
             .then(data => {
-                if(localStorage.getItem("time")+3600 >= (Date.now()/1000)) {
+                if(localStorage.getItem("time")+3600 <= (Date.now()/1000)) {
                     localStorage.setItem("weather", JSON.stringify(data.current_weather));
                     return this.temperature = data.current_weather.temperature;
+
                 } else {
-                    return this.temperature = localStorage.getItem("weather");
+                    return this.temperature = JSON.parse(localStorage.getItem("weather")).temperature;
                 }
             })
             .catch(err => {
@@ -50,11 +50,10 @@ export default class Weather {
 
     }
 
-    logWeather() {
-        console.log(this.temperature);
-    }
-
     errorLocation(e){
         console.log(e);
+    }
+
+    getData() {
     }
 }

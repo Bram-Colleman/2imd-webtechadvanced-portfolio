@@ -15,7 +15,7 @@ export default class Clothing {
 
 
         if(parseInt(temperature) < 20 && parseInt(temperature) > 0) {
-            if(localStorage.getItem("time")+3600 >= (Date.now()/1000)) {
+            if(localStorage.getItem("time")+3600 <= (Date.now()/1000)) {
                 this.getBg("cloud");
             } else {
                 this.bg = localStorage.getItem("bg");
@@ -37,7 +37,7 @@ export default class Clothing {
             } 
 
         else if(parseInt(temperature) <= 0){
-            if(localStorage.getItem("time")+3600 >= (Date.now()/1000)) {
+            if(localStorage.getItem("time")+3600 <= (Date.now()/1000)) {
                 this.getBg("freeze");
             } else {
                 this.bg = localStorage.getItem("bg");
@@ -60,7 +60,7 @@ export default class Clothing {
         } 
 
         else if(parseInt(temperature) >= 20){
-            if(localStorage.getItem("time")+3600 >= (Date.now()/1000)) {
+            if(localStorage.getItem("time")+3600 <= (Date.now()/1000)) {
                 this.getBg("sunny");
             } else {
                 this.bg = localStorage.getItem("bg");
